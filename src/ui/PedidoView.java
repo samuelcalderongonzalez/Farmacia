@@ -64,18 +64,7 @@ public class PedidoView {
 			 * @param e
 			 */
 			public void actionPerformed(ActionEvent e) {
-				String pedido = tfPedidos.getText();
-				if (pedido.isEmpty()) {
-					JOptionPane.showMessageDialog(btnConfirmar, "El campo está vacío");
-				} else {
-					if (Integer.parseInt(tfPedidos.getText()) <= 0)
-						JOptionPane.showMessageDialog(btnConfirmar, "El número introducido debe ser positivo");
-					else {
-						medicamentos.get(index).aumentarCantidadActual(Integer.parseInt(pedido));
-						frame.dispose();
-						new FarmaciaView(medicamentos);
-					}
-				}
+				confirmPedido();
 			}
 		});
 		btnConfirmar.setBounds(86, 179, 102, 23);
@@ -90,6 +79,21 @@ public class PedidoView {
 		});
 		btnAtras.setBounds(238, 179, 89, 23);
 		frame.getContentPane().add(btnAtras);
+	}
+	
+	private void confirmPedido() {
+		String pedido = tfPedidos.getText();
+		if (pedido.isEmpty()) {
+			JOptionPane.showMessageDialog(btnConfirmar, "El campo está vacío");
+		} else {
+			if (Integer.parseInt(tfPedidos.getText()) <= 0)
+				JOptionPane.showMessageDialog(btnConfirmar, "El número introducido debe ser positivo");
+			else {
+				medicamentos.get(index).aumentarCantidadActual(Integer.parseInt(pedido));
+				frame.dispose();
+				new FarmaciaView(medicamentos);
+			}
+		}
 	}
 
 }

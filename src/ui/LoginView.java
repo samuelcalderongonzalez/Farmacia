@@ -54,14 +54,7 @@ public class LoginView {
 		btnAccess = new JButton("Acceder");
 		btnAccess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User usuario = new User();
-				if (usuario.getPin().equals("6969")) {
-					JOptionPane.showMessageDialog(btnAccess, "Acceso concedido");
-					new FarmaciaView(medicamentos);
-					frame.dispose();
-				} else {
-					JOptionPane.showMessageDialog(btnAccess, "PIN incorrecto");
-				}
+				comprobarLogin();
 			}
 		});
 		btnAccess.setBounds(158, 201, 89, 23);
@@ -69,5 +62,16 @@ public class LoginView {
 		// Con esta línea se activa el btnAccess cada vez que pulsas "ENTER". Es más
 		// rápido que hacer el key listener
 		frame.getRootPane().setDefaultButton(btnAccess);
+	}
+	
+	private void comprobarLogin() {
+		User usuario = new User();
+		if (usuario.getPin().equals("6969")) {
+			JOptionPane.showMessageDialog(btnAccess, "Acceso concedido");
+			new FarmaciaView(medicamentos);
+			frame.dispose();
+		} else {
+			JOptionPane.showMessageDialog(btnAccess, "PIN incorrecto");
+		}
 	}
 }
